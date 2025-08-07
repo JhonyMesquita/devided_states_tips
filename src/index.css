@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+  }
+
+  /* Otimizações para evitar reflow */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Evitar reflow em elementos com transições */
+  .country-item,
+  .todo-item,
+  .search-input {
+    will-change: color, background-color;
+    transform: translateZ(0); /* Força GPU acceleration */
+  }
+}
+
+@layer components {
+  .app {
+    @apply w-full max-w-6xl mx-auto p-8 min-h-screen bg-gradient-to-br from-dark-100 to-dark-400;
+  }
+
+  .app-header {
+    @apply text-center mb-12 py-8 border-b-2 border-dark-500;
+  }
+
+  .app-header h1 {
+    @apply m-0 bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent;
+  }
+
+  .app-main {
+    @apply flex flex-row gap-12;
+  }
+
+  .app-main.grid-layout {
+    @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8;
+  }
+
+  .dashboard-header {
+    @apply col-span-full text-center mb-8;
+  }
+
+  .dashboard-header h2 {
+    @apply text-2xl font-bold text-primary;
+  }
+
+  .section {
+    @apply bg-dark-200 rounded-xl p-8 shadow-2xl border border-dark-500;
+  }
+
+  .section h2 {
+    @apply mt-0 mb-6 text-primary text-2xl;
+  }
+
+  .country-list-container {
+    @apply flex flex-col gap-6 w-80 min-w-80 max-w-80;
+  }
+
+  .search-container {
+    @apply relative;
+  }
+
+  .search-input {
+    @apply w-full px-6 py-4 border-2 border-dark-500 rounded-lg bg-dark-300 text-white text-base transition-colors duration-300 focus:outline-none focus:border-primary focus:shadow-lg focus:shadow-primary/10 placeholder:text-dark-800;
+  }
+
+  .countries-list {
+    @apply list-none p-0 m-0 max-h-96 overflow-y-auto rounded-lg bg-dark-300 border border-dark-500 w-full;
+  }
+
+  .country-item {
+    @apply px-6 py-4 border-b border-dark-500 transition-colors duration-200 cursor-pointer last:border-b-0 hover:bg-dark-500 hover:text-primary;
+  }
+
+  .country-info {
+    @apply flex flex-col gap-2;
+  }
+
+  .country-name {
+    @apply font-bold text-white text-lg break-words max-w-[200px];
+  }
+
+  .capital-name {
+    @apply text-primary text-lg font-bold break-words max-w-[200px];
+  }
+
+  /* ToDoList Styles */
+  .countries-dropdown {
+    @apply relative z-10;
+  }
+
+  .todos-section {
+    @apply mt-6;
+  }
+
+  .todos-list {
+    @apply list-none p-0 m-0 space-y-2;
+  }
+
+  .todo-item {
+    @apply flex justify-between items-center p-4 bg-dark-300 rounded-lg border border-dark-500 transition-colors duration-200 hover:bg-dark-400;
+  }
+
+  .todo-content {
+    @apply flex items-center gap-3 flex-1;
+  }
+
+  .todo-checkbox {
+    @apply w-5 h-5 rounded border-2 border-dark-500 bg-dark-300 text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-300 cursor-pointer;
+  }
+
+  .todo-text {
+    @apply font-medium break-words max-w-[200px];
+  }
+
+  .remove-btn {
+    @apply w-8 h-8 rounded-full bg-red-500 text-white font-bold text-lg flex items-center justify-center hover:bg-red-600 transition-colors duration-200 cursor-pointer;
+  }
+}
